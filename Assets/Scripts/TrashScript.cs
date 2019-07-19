@@ -6,7 +6,7 @@ public class TrashScript : MonoBehaviour
 {
     void Update()
     {
-        
+        Debug.Log(GameMenager.instance.timeLeft);
     }
 
     private void OnTriggerEnter(Collider other)

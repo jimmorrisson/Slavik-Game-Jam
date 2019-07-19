@@ -5,9 +5,13 @@ using UnityEngine;
 public class GameMenager : MonoBehaviour
 {
     [SerializeField]
-    public float time = 10;
+    public float timeLeft =  10;
+    [SerializeField]
+    public float FuelLeft = 10;
 
     public static GameMenager instance;
+
+    public string MicrophoneString { get; private set; }
 
     void Start()
     {
@@ -15,9 +19,22 @@ public class GameMenager : MonoBehaviour
             instance = null;
 
         instance = new GameMenager();
+        AudioSource audioSource = GetComponent<AudioSource>();
+        foreach (var device in Microphone.devices)
+            MicrophoneString = device;
+        audioSource.clip = Microphone.Start(MicrophoneString, true, 10, 44100);
+        audioSource.Play();
     }
     void Update()
     {
-        time -= Time.deltaTime;
+        if (instance.timeLeft > 0)
+        {
+            instance.timeLeft -= Time.deltaTime;
+        }
+        else if (instance.timeLeft < 0)
+            instance.timeLeft = 0;
+
+        if (instance.timeLeft <= 0)
+            Debug.Log("Game over");
     }
 }
