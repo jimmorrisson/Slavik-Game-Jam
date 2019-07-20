@@ -19,11 +19,11 @@ public class GameMenager : MonoBehaviour
             instance = null;
 
         instance = new GameMenager();
-        AudioSource audioSource = GetComponent<AudioSource>();
-        foreach (var device in Microphone.devices)
-            MicrophoneString = device;
-        audioSource.clip = Microphone.Start(MicrophoneString, true, 10, 44100);
-        audioSource.Play();
+        //AudioSource audioSource = GetComponent<AudioSource>();
+        //foreach (var device in Microphone.devices)
+        //    MicrophoneString = device;
+        //audioSource.clip = Microphone.Start(MicrophoneString, true, 10, 44100);
+        //audioSource.Play();
     }
     void Update()
     {
