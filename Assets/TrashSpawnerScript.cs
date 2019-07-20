@@ -41,6 +41,14 @@ public class TrashSpawnerScript : MonoBehaviour
             position.z < minPosition.y)
             return false;
 
+        RaycastHit hit;
+        var ray = Camera.main.ScreenPointToRay(position);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.tag == "Tree")
+                return false;
+        }
         return true;
     }
 }
