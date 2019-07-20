@@ -48,4 +48,6 @@ MonoBehaviour:
   maxFuel: 100
   trashSpawner: {fileID: 8902880010908093003, guid: 3ab70136a3addb94e9d8bbe1e34193e8,
     type: 3}
+  PowerScorePref: {fileID: 0}
+  fuelFromEmpty: 10
   endPanel: {fileID: 0}

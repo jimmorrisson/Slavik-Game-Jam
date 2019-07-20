@@ -15,12 +15,15 @@ public class GameMenager : MonoBehaviour
     [SerializeField]
     public TrashSpawnerScript trashSpawner;
     public GameObject PowerScorePref;
+    public float fuelFromEmpty;
     private GameObject Player;
    
     public GameObject endPanel;
 
     public float FuelLeft { get; private set; }
     public static GameMenager instance;
+
+    public int trashList { get; private set; } = 0;
 
     public string MicrophoneString { get; private set; }
 
@@ -36,6 +39,7 @@ public class GameMenager : MonoBehaviour
         instance.GameOver = false;
         instance.endPanel = endPanel;
         instance.endPanel.SetActive(false);
+        instance.trashList = 0;
         //AudioSource audioSource = GetComponent<AudioSource>();
         //foreach (var device in Microphone.devices)
         //    MicrophoneString = device;
@@ -98,6 +102,7 @@ public class GameMenager : MonoBehaviour
     {
         instance.AddTime(time);
         instance.trashSpawner.SpawnTrash(trashTransform.position);
+        instance.trashList += 1;
     }
 
     public void ResetScene()
@@ -108,5 +113,15 @@ public class GameMenager : MonoBehaviour
     public void ShowPowerScore () {
         var go = Instantiate(PowerScorePref, Player.transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = "-10";
+    }
+
+    public void EmptyTheContainer()
+    {
+        for (int i = 0; i < instance.trashList; i++)
+        {
+            AddFuel(instance.fuelFromEmpty);
+        }
+
+        instance.trashList = 0;
     }
 }

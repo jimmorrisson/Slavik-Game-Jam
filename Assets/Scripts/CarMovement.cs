@@ -10,8 +10,12 @@ public class CarMovement : MonoBehaviour
     public float rotationSpeed;
     [SerializeField]
     public float dashCooldownTime;
+    [SerializeField]
+    public float boostSpeed;
 
     private float dashCooldown = 0;
+
+    public float BoostTime { get; set; } = 0;
 
     private Rigidbody rigidbody;
 
@@ -24,11 +28,12 @@ public class CarMovement : MonoBehaviour
     {
         HandleMovement();
         HandleDashCooldown();
+        HandleBoost();
     }
 
     private void HandleMovement()
     {
-        float movementVertical = Input.GetAxis("Fire2") * movementSpeed;
+        float movementVertical = (BoostTime > 0) ? Input.GetAxis("Fire2") * (movementSpeed + boostSpeed) : Input.GetAxis("Fire2") * movementSpeed;
         float movementHorizonal = Input.GetAxis("Horizontal") * rotationSpeed;
         rigidbody.MovePosition(rigidbody.position + transform.forward * movementVertical * Time.deltaTime);
 
@@ -53,6 +58,14 @@ public class CarMovement : MonoBehaviour
         {
             dashCooldown = 0;
         }
+    }
+
+    private void HandleBoost()
+    {
+        if (BoostTime > 0)
+            BoostTime -= Time.deltaTime;
+        else
+            BoostTime = 0;
     }
 
     private void SetDashCooldown(float time)

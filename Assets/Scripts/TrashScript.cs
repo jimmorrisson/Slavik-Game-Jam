@@ -15,12 +15,11 @@ public class TrashScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Bullet"))
         {
             exposion.Play();
             GameMenager.instance.OnTrashDestroyed(timeAdd, this.transform);
             Destroy(gameObject, 0.2f);
         }
-
     }
 }
