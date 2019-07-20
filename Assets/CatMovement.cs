@@ -29,7 +29,7 @@ public class CatMovement : MonoBehaviour
         }
 
         if(other.tag == "Player") {
-            Destroy(gameObject, 0.9f);
+            Destroy(gameObject, 0.5f);
         }
     }
 }
