@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class TrashScript : MonoBehaviour
 {
+    [SerializeField]
+    public float timeAdd;
 
     private ParticleSystem exposion;
-    void Start () {
-       exposion = GetComponent<ParticleSystem>();
+    void Start()
+    {
+        exposion = GetComponent<ParticleSystem>();
     }
     void Update()
     {
@@ -16,12 +19,12 @@ public class TrashScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
-        if (other.CompareTag ("Player")) {
-              exposion.Play();
+        if (other.CompareTag("Player"))
+        {
+            exposion.Play();
+            GameMenager.instance.AddTime(timeAdd);
+            Destroy(gameObject, 0.2f);
         }
-        
-    }
 
-     
+    }
 }

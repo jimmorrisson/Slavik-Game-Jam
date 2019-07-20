@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameMenager : MonoBehaviour
 {
     [SerializeField]
-    public float timeLeft =  10;
+    public float timeLeft;
     [SerializeField]
-    //public float FuelLeft = 100;
+    private float maxTime;
+    [SerializeField]
+    public float maxFuel;
 
+    public float FuelLeft { get; private set; }
     public static GameMenager instance;
 
     public string MicrophoneString { get; private set; }
@@ -19,6 +22,10 @@ public class GameMenager : MonoBehaviour
             instance = null;
 
         instance = new GameMenager();
+        instance.timeLeft = timeLeft;
+        instance.maxTime = maxTime;
+        instance.FuelLeft = maxFuel;
+
         //AudioSource audioSource = GetComponent<AudioSource>();
         //foreach (var device in Microphone.devices)
         //    MicrophoneString = device;
@@ -27,14 +34,34 @@ public class GameMenager : MonoBehaviour
     }
     void Update()
     {
+        HandleTime();
+        HandleFuel();
+    }
+
+    public void AddTime(float time)
+    {
+        instance.timeLeft += time;
+        if (instance.timeLeft > instance.maxTime)
+            instance.timeLeft = instance.maxTime;
+    }
+
+    public void AddFuel(float fuel)
+    {
+        instance.FuelLeft = ((instance.FuelLeft + fuel) > maxFuel) ? maxFuel : instance.FuelLeft + fuel;
+    }
+
+    private void HandleFuel()
+    {
+        instance.FuelLeft -= Time.deltaTime / 2;
+    }
+
+    private void HandleTime()
+    {
         if (instance.timeLeft > 0)
         {
             instance.timeLeft -= Time.deltaTime;
         }
         else if (instance.timeLeft < 0)
             instance.timeLeft = 0;
-
-        if (instance.timeLeft <= 0)
-            Debug.Log("Game over");   
     }
 }

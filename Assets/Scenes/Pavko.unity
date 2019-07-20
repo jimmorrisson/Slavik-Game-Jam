@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1184,6 +1184,46 @@ PrefabInstance:
       propertyPath: m_PreserveAspect
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 213.59998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335756837099879198, guid: cb168d2fe441fee4283a9d904b7d8a84,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb168d2fe441fee4283a9d904b7d8a84, type: 3}
 --- !u!1 &1078998710
@@ -1728,6 +1768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   rotationSpeed: 5
+  dashCooldownTime: 0
 --- !u!54 &1854637762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6574,8 +6615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f180ab2992a826409b973938760cd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 6
   rotationSpeed: 5
+  dashCooldownTime: 3
 --- !u!199 &1980176244
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -11589,6 +11631,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2542689122425871967, guid: bb20609cb93a3064c927353528a15cab,
+        type: 3}
+      propertyPath: timeAdd
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb20609cb93a3064c927353528a15cab, type: 3}
 --- !u!1001 &4296096645970856682
@@ -11657,6 +11704,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439267972979997715, guid: 2cda73820d7f214448f1b6cccb9d58f8,
+        type: 3}
+      propertyPath: maxTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439267972979997715, guid: 2cda73820d7f214448f1b6cccb9d58f8,
+        type: 3}
+      propertyPath: maxFuel
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cda73820d7f214448f1b6cccb9d58f8, type: 3}

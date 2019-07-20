@@ -9,52 +9,34 @@ public class FuelBar : MonoBehaviour
 
     public Image ImgFuelBar;
 
-    public int min;
-    public int max;
+    private int min;
+    private int max;
     public Text amount;
 
     private float mCurrentValue;
     private float mCurrentPercentage;
 
-    public void Start()
+    void Start()
     {
-        SetFuel(100);
+        max = 100;
+        min = 0;
     }
 
-    public void Update () {
-        ImgFuelBar.fillAmount = mCurrentPercentage;    
-    }
-
-    
-    
-
-    public void SetFuel(float Fuel) {
-        
-        if (Fuel != mCurrentValue) {
-            if (max - min == 0) {
-                mCurrentPercentage = 0;
-                mCurrentValue = 0;
-            }
-            else {
-                mCurrentValue = Fuel;
-                mCurrentPercentage = (float)mCurrentValue / (float)(max - min);
- 
-               Fuel -= Time.deltaTime;
-        
-               
-            }
-            amount.text = string.Format("{0} %", Mathf.RoundToInt(mCurrentPercentage * 100));
-            
+    void Update()
+    {
+        if (GameMenager.instance != null)
+        {
+            Debug.Log("DUPA");
+            //SetFuel(GameMenager.instance.FuelLeft);
+            //ImgFuelBar.fillAmount = mCurrentPercentage;
         }
     }
 
-    public float CurrentPercentage {
-        get { return mCurrentPercentage; }
+    public void SetFuel(float fuel)
+    {
+        Debug.Log(string.Format("Fuel: {0}", fuel));
+        mCurrentPercentage = fuel / max;
+        amount.text = string.Format("{0} %", Mathf.RoundToInt(mCurrentPercentage * 100));
+        //amount.text = fuel.ToString();
     }
-
-        public float CurrentValue {
-        get { return mCurrentValue; }
-    }
-
-
 }

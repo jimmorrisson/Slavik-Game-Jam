@@ -5,9 +5,13 @@ using UnityEngine;
 public class CarMovement : MonoBehaviour
 {
     [SerializeField]
-    public float movementSpeed = 10.0f;
+    public float movementSpeed;
     [SerializeField]
-    public float rotationSpeed = 5.0f;
+    public float rotationSpeed;
+    [SerializeField]
+    public float dashCooldownTime;
+
+    private float dashCooldown = 0;
 
     private Rigidbody rigidbody;
 
@@ -18,16 +22,40 @@ public class CarMovement : MonoBehaviour
 
     void Update()
     {
+        HandleMovement();
+        HandleDashCooldown();
+    }
+
+    private void HandleMovement()
+    {
         float movementVertical = Input.GetAxis("Vertical") * movementSpeed;
         float movementHorizonal = Input.GetAxis("Horizontal") * rotationSpeed;
-        //rigidbody.velocity = transform.forward * movementHorizonal;
         rigidbody.MovePosition(rigidbody.position + transform.forward * movementVertical * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        float btnJump = Input.GetAxis("Jump");
+        if (btnJump > 0.0f && dashCooldown == 0)
         {
             rigidbody.AddForceAtPosition(transform.forward * 10, transform.position, ForceMode.Impulse);
+            SetDashCooldown(dashCooldownTime);
         }
 
         gameObject.transform.Rotate(0, movementHorizonal, 0, Space.Self);
+    }
+
+    private void HandleDashCooldown()
+    {
+        if (dashCooldown > 0)
+        {
+            dashCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            dashCooldown = 0;
+        }
+    }
+
+    private void SetDashCooldown(float time)
+    {
+        dashCooldown = time;
     }
 }
