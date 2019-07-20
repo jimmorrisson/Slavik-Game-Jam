@@ -6731,7 +6731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 6
   rotationSpeed: 5
-  dashCooldownTime: 3
+  dashCooldownTime: 1
 --- !u!199 &1980176244
 ParticleSystemRenderer:
   serializedVersion: 6
