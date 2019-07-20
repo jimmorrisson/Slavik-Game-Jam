@@ -22,7 +22,7 @@ public class TrashScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             exposion.Play();
-            GameMenager.instance.AddTime(timeAdd);
+            GameMenager.instance.OnTrashDestroyed(timeAdd, this.transform);
             Destroy(gameObject, 0.2f);
         }
 

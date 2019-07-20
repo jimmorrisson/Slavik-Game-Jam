@@ -10,6 +10,8 @@ public class GameMenager : MonoBehaviour
     private float maxTime;
     [SerializeField]
     public float maxFuel;
+    [SerializeField]
+    public TrashSpawnerScript trashSpawner;
 
     public float FuelLeft { get; private set; }
     public static GameMenager instance;
@@ -25,6 +27,7 @@ public class GameMenager : MonoBehaviour
         instance.timeLeft = timeLeft;
         instance.maxTime = maxTime;
         instance.FuelLeft = maxFuel;
+        instance.trashSpawner = trashSpawner;
 
         //AudioSource audioSource = GetComponent<AudioSource>();
         //foreach (var device in Microphone.devices)
@@ -38,7 +41,7 @@ public class GameMenager : MonoBehaviour
         HandleFuel();
     }
 
-    public void AddTime(float time)
+    private void AddTime(float time)
     {
         instance.timeLeft += time;
         if (instance.timeLeft > instance.maxTime)
@@ -63,5 +66,11 @@ public class GameMenager : MonoBehaviour
         }
         else if (instance.timeLeft < 0)
             instance.timeLeft = 0;
+    }
+
+    public void OnTrashDestroyed(float time, Transform trashTransform)
+    {
+        instance.AddTime(time);
+        instance.trashSpawner.SpawnTrash(trashTransform.position);
     }
 }
