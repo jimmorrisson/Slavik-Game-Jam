@@ -52,8 +52,8 @@ public class GameMenager : MonoBehaviour
         if (timeLeft <= 0 || FuelLeft <= 0)
         {
             GameOver = true;
-            //if (!endPanel.activeInHierarchy)
-                ResetScene();
+            if (!endPanel.activeInHierarchy)
+                endPanel.SetActive(true);
         }
     }
 
