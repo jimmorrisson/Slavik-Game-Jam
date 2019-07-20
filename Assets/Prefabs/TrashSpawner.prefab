@@ -45,7 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRange: 10
   maxRange: 20
-  trashPrefab: {fileID: 67924304772333461, guid: bb20609cb93a3064c927353528a15cab,
-    type: 3}
+  trashPrefabs:
+  - {fileID: 790174906893799611, guid: 47cfb48fa19eb754eadc50d8ffbd3222, type: 3}
+  - {fileID: 790174906893799611, guid: 699833d41458d2648801ae508bfc1724, type: 3}
+  - {fileID: 790174906893799611, guid: 5001b2a84108f144ea3d1e5d9f42e979, type: 3}
   maxPosition: {x: 40, y: 40}
   minPosition: {x: -40, y: -40}

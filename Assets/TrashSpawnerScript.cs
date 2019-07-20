@@ -9,7 +9,7 @@ public class TrashSpawnerScript : MonoBehaviour
     [SerializeField]
     public int maxRange;
     [SerializeField]
-    public GameObject trashPrefab;
+    public GameObject[] trashPrefabs;
     [SerializeField]
     public Vector2 maxPosition;
     [SerializeField]
@@ -26,8 +26,9 @@ public class TrashSpawnerScript : MonoBehaviour
             posZ = Random.Range(minRange, maxRange);
             var plusOrMinus = Random.Range(0, 1);
             spawnPosition = (plusOrMinus > 0.5f) ? trashPosition + new Vector3(posX, 0, posZ) : trashPosition - new Vector3(posX, 0, posZ);
-        }           
-        Instantiate(trashPrefab, spawnPosition, Quaternion.identity);
+        }
+        var randomTrashValue = Random.Range(0, trashPrefabs.Length);
+        Instantiate(trashPrefabs[randomTrashValue], spawnPosition, Quaternion.identity);
     }
 
     private bool IsValidPosition(Vector3 position)

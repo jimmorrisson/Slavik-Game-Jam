@@ -15,6 +15,8 @@ public class GameMenager : MonoBehaviour
     [SerializeField]
     public TrashSpawnerScript trashSpawner;
     public GameObject PowerScorePref;
+    public AudioSource backgroundMusic;
+    public AudioSource endMusic;
     public float fuelFromEmpty;
     private GameObject Player;
    
@@ -40,6 +42,8 @@ public class GameMenager : MonoBehaviour
         instance.endPanel = endPanel;
         instance.endPanel.SetActive(false);
         instance.trashList = 0;
+        backgroundMusic.enabled = true;
+        endMusic.enabled = false;
         //AudioSource audioSource = GetComponent<AudioSource>();
         //foreach (var device in Microphone.devices)
         //    MicrophoneString = device;
@@ -60,6 +64,11 @@ public class GameMenager : MonoBehaviour
     {
         if (timeLeft <= 0 || FuelLeft <= 0)
         {
+            if (!GameOver)
+            {
+                backgroundMusic.enabled = false;
+                endMusic.enabled = true;
+            }
             GameOver = true;
             if (!endPanel.activeInHierarchy)
                 endPanel.SetActive(true);

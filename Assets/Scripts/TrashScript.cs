@@ -7,10 +7,13 @@ public class TrashScript : MonoBehaviour
     [SerializeField]
     public float timeAdd;
 
+    public AudioSource audioSource;
+
     private ParticleSystem exposion;
     void Start()
     {
         exposion = GetComponent<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +21,7 @@ public class TrashScript : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("Bullet"))
         {
             exposion.Play();
+            audioSource.Play();
             GameMenager.instance.OnTrashDestroyed(timeAdd, this.transform);
             Destroy(gameObject, 0.2f);
         }
