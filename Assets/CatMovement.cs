@@ -6,19 +6,13 @@ using UnityEngine;
 
 public class CatMovement : MonoBehaviour
 {
-
-     public Animation anim;
      float currentSpeed = 2.0f;
      //float targetSpeed = 1f;
 
     public Transform target;
 
-    ParticleSystem blood;
-
     void Start () {
         transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-        blood = GetComponent<ParticleSystem>();
-       // anim.Stop();
     }
 
     void Update () {
@@ -40,8 +34,6 @@ public class CatMovement : MonoBehaviour
             }
             
             Destroy(gameObject, 1.5f);
-            blood.Play();
-            anim.Play();
             GameMenager.instance.TakeFuel(10);
         }
     }
