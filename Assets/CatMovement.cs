@@ -29,7 +29,12 @@ public class CatMovement : MonoBehaviour
         }
 
         if(other.tag == "Player") {
-            Destroy(gameObject, 0.5f);
+            if (GameMenager.instance.PowerScorePref) {
+                GameMenager.instance.ShowPowerScore();
+            }
+            
+            Destroy(gameObject, 1.5f);
+            GameMenager.instance.TakeFuel(10);
         }
     }
 }
