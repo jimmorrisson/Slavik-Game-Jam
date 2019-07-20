@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
@@ -12,11 +14,15 @@ public class GameMenager : MonoBehaviour
     public float maxFuel;
     [SerializeField]
     public TrashSpawnerScript trashSpawner;
+   
+    public GameObject endPanel;
 
     public float FuelLeft { get; private set; }
     public static GameMenager instance;
 
     public string MicrophoneString { get; private set; }
+
+    public bool GameOver { get; private set; }
 
     void Start()
     {
@@ -24,8 +30,10 @@ public class GameMenager : MonoBehaviour
             instance = null;
 
         instance = this;
-        FuelLeft = maxFuel;
-
+        instance.FuelLeft = maxFuel;
+        instance.GameOver = false;
+        instance.endPanel = endPanel;
+        instance.endPanel.SetActive(false);
         //AudioSource audioSource = GetComponent<AudioSource>();
         //foreach (var device in Microphone.devices)
         //    MicrophoneString = device;
@@ -36,6 +44,17 @@ public class GameMenager : MonoBehaviour
     {
         HandleTime();
         HandleFuel();
+        HandleGameOverState();
+    }
+
+    private void HandleGameOverState()
+    {
+        if (timeLeft <= 0 || FuelLeft <= 0)
+        {
+            GameOver = true;
+            //if (!endPanel.activeInHierarchy)
+                ResetScene();
+        }
     }
 
     private void AddTime(float time)
@@ -74,5 +93,10 @@ public class GameMenager : MonoBehaviour
     {
         instance.AddTime(time);
         instance.trashSpawner.SpawnTrash(trashTransform.position);
+    }
+
+    public void ResetScene()
+    {
+        SceneManager.LoadScene(0);
     }
 }
