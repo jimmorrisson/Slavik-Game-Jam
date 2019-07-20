@@ -5,10 +5,10 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     [SerializeField]
-    public float speed = 20.0f;
+    public float speed;
 
     [SerializeField]
-    public float destroyTime = 1.0f;
+    public float destroyTime;
 
     private Rigidbody bulletRigid;
 

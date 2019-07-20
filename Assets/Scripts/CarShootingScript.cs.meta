@@ -3,7 +3,10 @@ guid: 925b404dee88847458520426a63b4519
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - carTip: {instanceID: 0}
+  - bulletPrefab: {fileID: 5201332747677908220, guid: ad822c966b336784a85949922d2fe384,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
