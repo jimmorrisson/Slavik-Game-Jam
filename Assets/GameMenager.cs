@@ -14,6 +14,8 @@ public class GameMenager : MonoBehaviour
     public float maxFuel;
     [SerializeField]
     public TrashSpawnerScript trashSpawner;
+    public GameObject PowerScorePref;
+    private GameObject Player;
    
     public GameObject endPanel;
 
@@ -39,6 +41,9 @@ public class GameMenager : MonoBehaviour
         //    MicrophoneString = device;
         //audioSource.clip = Microphone.Start(MicrophoneString, true, 10, 44100);
         //audioSource.Play();
+
+        if (Player == null)
+            Player = GameObject.FindWithTag("Player");
     }
     void Update()
     {
@@ -98,5 +103,10 @@ public class GameMenager : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ShowPowerScore () {
+        var go = Instantiate(PowerScorePref, Player.transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = "-10";
     }
 }
