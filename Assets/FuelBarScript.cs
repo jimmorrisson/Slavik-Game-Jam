@@ -27,7 +27,6 @@ public class FuelBarScript : MonoBehaviour
 
     public void SetFuel(float fuel)
     {
-        Debug.Log(string.Format("Fuel: {0}", fuel));
         mCurrentPercentage = fuel / maxAmount;
         fuelText.text = string.Format("{0} %", Mathf.RoundToInt(mCurrentPercentage * 100));
     }
