@@ -28,10 +28,11 @@ public class CarMovement : MonoBehaviour
 
     private void HandleMovement()
     {
-        float movementVertical = Input.GetAxis("Vertical") * movementSpeed;
+        float movementVertical = Input.GetAxis("Fire2") * movementSpeed;
         float movementHorizonal = Input.GetAxis("Horizontal") * rotationSpeed;
         rigidbody.MovePosition(rigidbody.position + transform.forward * movementVertical * Time.deltaTime);
 
+        //Debug.Log(string.Format("button {0}", Input.GetAxis("Fire2")));
         float btnJump = Input.GetAxis("Jump");
         if (btnJump > 0.0f && dashCooldown == 0)
         {
