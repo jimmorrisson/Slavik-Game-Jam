@@ -32,11 +32,11 @@ public class CarMovement : MonoBehaviour
         float movementHorizonal = Input.GetAxis("Horizontal") * rotationSpeed;
         rigidbody.MovePosition(rigidbody.position + transform.forward * movementVertical * Time.deltaTime);
 
-        //Debug.Log(string.Format("button {0}", Input.GetAxis("Fire2")));
         float btnJump = Input.GetAxis("Jump");
         if (btnJump > 0.0f && dashCooldown == 0)
         {
             rigidbody.AddForceAtPosition(transform.forward * 10, transform.position, ForceMode.Impulse);
+            GameMenager.instance.TakeFuel(1.2f);
             SetDashCooldown(dashCooldownTime);
         }
 

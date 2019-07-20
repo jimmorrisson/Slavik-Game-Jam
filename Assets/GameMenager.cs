@@ -23,11 +23,8 @@ public class GameMenager : MonoBehaviour
         if (instance != null)
             instance = null;
 
-        instance = new GameMenager();
-        instance.timeLeft = timeLeft;
-        instance.maxTime = maxTime;
-        instance.FuelLeft = maxFuel;
-        instance.trashSpawner = trashSpawner;
+        instance = this;
+        FuelLeft = maxFuel;
 
         //AudioSource audioSource = GetComponent<AudioSource>();
         //foreach (var device in Microphone.devices)
@@ -53,9 +50,14 @@ public class GameMenager : MonoBehaviour
         instance.FuelLeft = ((instance.FuelLeft + fuel) > maxFuel) ? maxFuel : instance.FuelLeft + fuel;
     }
 
+    public void TakeFuel(float fuel)
+    {
+        instance.FuelLeft = ((instance.FuelLeft - fuel) >= 0) ? instance.FuelLeft - fuel : 0;
+    }
+
     private void HandleFuel()
     {
-        instance.FuelLeft -= Time.deltaTime / 2;
+        instance.FuelLeft = ((instance.FuelLeft - Time.deltaTime / 2) >= 0) ? instance.FuelLeft - Time.deltaTime / 2 : 0;
     }
 
     private void HandleTime()

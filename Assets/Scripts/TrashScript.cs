@@ -12,10 +12,6 @@ public class TrashScript : MonoBehaviour
     {
         exposion = GetComponent<ParticleSystem>();
     }
-    void Update()
-    {
-        //Debug.Log(GameMenager.instance.timeLeft);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
