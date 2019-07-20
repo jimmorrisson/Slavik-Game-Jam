@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     void Awake()
     {
         timerText = GetComponent<TextMeshProUGUI>() ?? gameObject.AddComponent<TextMeshProUGUI>();
-        timerText.text = "20";
+        
     }
 
     // Update is called once per frame

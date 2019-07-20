@@ -7,7 +7,7 @@ public class GameMenager : MonoBehaviour
     [SerializeField]
     public float timeLeft =  10;
     [SerializeField]
-    public float FuelLeft = 10;
+    //public float FuelLeft = 100;
 
     public static GameMenager instance;
 
@@ -35,6 +35,6 @@ public class GameMenager : MonoBehaviour
             instance.timeLeft = 0;
 
         if (instance.timeLeft <= 0)
-            Debug.Log("Game over");
+            Debug.Log("Game over");   
     }
 }
