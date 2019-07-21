@@ -22,6 +22,7 @@ public class TrashScript : MonoBehaviour
         {
             exposion.Play();
             audioSource.Play();
+            GameMenager.instance.AddFuel(2);
             GameMenager.instance.OnTrashDestroyed(timeAdd, this.transform);
             Destroy(gameObject, 0.2f);
         }
